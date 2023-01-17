@@ -1,0 +1,14 @@
+spin_version = "1"
+authors = ["David Flanagan <david@rawkode.dev>"]
+description = ""
+name = "backend"
+trigger = { type = "http", base = "/" }
+version = "0.1.0"
+
+[[component]]
+id = "backend"
+source = "target/wasm32-wasi/release/backend.wasm"
+[component.trigger]
+route = "/..."
+[component.build]
+command = "cargo build --target wasm32-wasi --release"
