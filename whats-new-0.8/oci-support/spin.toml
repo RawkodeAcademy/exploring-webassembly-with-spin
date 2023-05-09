@@ -1,0 +1,15 @@
+spin_version = "1"
+authors = ["David Flanagan <david@rawkode.dev>"]
+description = ""
+name = "demo"
+trigger = { type = "http", base = "/" }
+version = "0.1.0"
+
+[[component]]
+id = "demo"
+source = { url = "https://github.com/fermyon/spin-fileserver/releases/download/v0.0.1/spin_static_fs.wasm", digest = "sha256:650376c33a0756b1a52cad7ca670f1126391b79050df0321407da9c741d32375" }
+files = [{ source = "assets", destination = "/" }]
+environment = { FALLBACK_PATH = "index.html" }
+
+[component.trigger]
+route = "/static/..."

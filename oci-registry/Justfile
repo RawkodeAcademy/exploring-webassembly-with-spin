@@ -1,0 +1,11 @@
+push:
+    spin registry push ghcr.io/rawkode/spin-hello:v1
+
+spin-up:
+    spin up -f ghcr.io/rawkode/spin-hello:v1
+
+sign:
+    cosign sign ghcr.io/rawkode/spin-hello:v1
+
+verify:
+    cosign verify -key cosign.pub ghcr.io/rawkode/spin-hello:v1

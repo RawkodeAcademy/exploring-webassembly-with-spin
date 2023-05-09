@@ -1,0 +1,23 @@
+cluster-create:
+  k3d cluster create wasm-cluster --image ghcr.io/deislabs/containerd-wasm-shims/examples/k3d:v0.5.1 -p "8081:80@loadbalancer" --agents 2
+
+cluster-delete:
+  k3d cluster delete wasm-cluster
+
+spin-plugin-k8s:
+  spin plugin install -u https://raw.githubusercontent.com/chrismatteson/spin-plugin-k8s/main/k8s.json
+
+k8s-manualmode:
+  #!/usr/bin/env bash
+  docker buildx build --platform wasi/wasm32 -t run-wasm .
+  k3d image import -c wasm-cluster run-wasm:latest
+  kubectl apply -f opt/kubernetes/runtimeClasses.yaml
+
+k8s-easymode:
+  #!/usr/bin/env bash
+  spin k8s scaffold spin-easymode:latest
+  spin k8s build
+  k3d image import -c wasm-cluster  spin-easymode:latest
+  spin k8s deploy
+
+

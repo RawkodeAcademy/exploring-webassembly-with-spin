@@ -1,0 +1,21 @@
+spin_manifest_version = "1"
+authors = ["David Flanagan <david@rawkode.dev>"]
+description = ""
+name = "planetscale"
+trigger = { type = "http", base = "/" }
+version = "0.1.0"
+
+[[component]]
+id = "planetscale"
+source = "target/spin-http-js.wasm"
+exclude_files = ["**/node_modules"]
+allowed_http_hosts = ["aws.connect.psdb.cloud"]
+
+[component.config]
+abc = "hello"
+
+[component.trigger]
+route = "/..."
+
+[component.build]
+command = "pnpm run build"

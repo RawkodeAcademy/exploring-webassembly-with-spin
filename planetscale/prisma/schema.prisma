@@ -1,0 +1,12 @@
+datasource db {
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+model Event {
+  id        Int      @id @default(autoincrement())
+  hostname  String
+  path      String
+  timestamp DateTime
+}

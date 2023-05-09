@@ -1,0 +1,15 @@
+spin_manifest_version = "1"
+authors = ["David Flanagan <david@rawkode.dev>"]
+description = ""
+name = "oci"
+trigger = { type = "http", base = "/" }
+version = "0.1.0"
+
+[[component]]
+id = "oci"
+source = "target/wasm32-wasi/release/oci.wasm"
+allowed_http_hosts = []
+[component.trigger]
+route = "/..."
+[component.build]
+command = "cargo build --target wasm32-wasi --release"

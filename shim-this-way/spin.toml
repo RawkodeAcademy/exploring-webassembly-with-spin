@@ -1,0 +1,29 @@
+spin_manifest_version = "1"
+authors = ["David Flanagan <david@rawkode.dev>"]
+description = ""
+name = "hello"
+trigger = { type = "http", base = "/" }
+version = "0.1.0"
+
+[[component]]
+id = "hello"
+source = "hello/target/wasm32-wasi/release/hello.wasm"
+allowed_http_hosts = []
+
+[component.trigger]
+route = "/"
+
+[component.build]
+workdir = "hello"
+command = "cargo build --target wasm32-wasi --release"
+
+[[component]]
+id = "echo"
+source = "echo/target/spin-http-js.wasm"
+
+[component.trigger]
+route = "/echo"
+
+[component.build]
+command = "npm run build"
+workdir = "echo"

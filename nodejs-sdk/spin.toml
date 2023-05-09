@@ -1,0 +1,17 @@
+spin_version = "1"
+authors = ["Fermyon Engineering <engineering@fermyon.com>"]
+name = "spin-http-js"
+trigger = { type = "http", base = "/" }
+version = "1.0.0"
+
+[[component]]
+id = "hello"
+source = "target/spin-http-js.wasm"
+files = ["src/index.html"]
+allowed_http_hosts = ["insecure:allow-all"]
+
+[component.trigger]
+route = "/hello"
+
+[component.build]
+command = "npm run build"

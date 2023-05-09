@@ -1,0 +1,17 @@
+spin_version = "1"
+authors = ["David Flanagan <david@rawkode.dev>"]
+description = ""
+name = "rust-sdk"
+trigger = { type = "http", base = "/hello-world" }
+version = "0.1.0"
+
+[[component]]
+id = "rust-sdk"
+source = "target/wasm32-wasi/release/rust_sdk.wasm"
+allowed_http_hosts = ["google.com"]
+
+[component.trigger]
+route = "/"
+
+[component.build]
+command = "cargo build --target wasm32-wasi --release"

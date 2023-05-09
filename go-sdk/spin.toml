@@ -1,0 +1,17 @@
+spin_version = "1"
+authors = ["David Flanagan <david@rawkode.dev>"]
+description = ""
+name = "go-sdk"
+trigger = { type = "http", base = "/" }
+version = "0.1.0"
+
+[[component]]
+id = "go-sdk"
+source = "main.wasm"
+allowed_http_hosts = ["insecure:allow-all"]
+
+[component.trigger]
+route = "/..."
+
+[component.build]
+command = "tinygo build -wasm-abi=generic -target=wasi -gc=leaking -no-debug -o main.wasm main.go"

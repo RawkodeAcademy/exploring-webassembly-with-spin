@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: run-wasm
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: run-wasm
+  template:
+    metadata:
+      labels:
+        app: run-wasm
+    spec:
+      runtimeClassName: spin
+      containers:
+        - name: run-wasm
+          image: ghcr.io/rawkode/shim-this-way:latest
+          imagePullPolicy: Always
+          command:
+            - "/"

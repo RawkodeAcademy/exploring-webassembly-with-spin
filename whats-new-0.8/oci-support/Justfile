@@ -1,0 +1,12 @@
+IMAGE_NAME := "ghcr.io/rawkodeacademy/exploring-spin:whats-new-0.8"
+
+push:
+    spin oci push {{ IMAGE_NAME }}
+
+sign:
+    COSIGN_EXPERIMENTAL=1 cosign sign {{ IMAGE_NAME }}
+
+verify:
+    COSIGN_EXPERIMENTAL=1 cosign verify {{ IMAGE_NAME }}
+
+demo: push sign

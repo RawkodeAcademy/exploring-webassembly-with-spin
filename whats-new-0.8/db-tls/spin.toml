@@ -1,0 +1,18 @@
+spin_version = "1"
+authors = ["David Flanagan <david@rawkode.dev>"]
+description = ""
+name = "db-tls"
+trigger = { type = "http", base = "/" }
+version = "0.1.0"
+
+[[component]]
+id = "db-tls"
+source = "target/wasm32-wasi/release/db_tls.wasm"
+environment = { DB_URL = "host=ep-flat-hill-139420.eu-central-1.aws.neon.tech user=rawkode password=Kdmjs79cEFiJ dbname=academy" }
+allowed_http_hosts = []
+
+[component.trigger]
+route = "/..."
+
+[component.build]
+command = "cargo build --target wasm32-wasi --release"

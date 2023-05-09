@@ -1,0 +1,17 @@
+spin_manifest_version = "1"
+authors = ["David Flanagan <david@rawkode.dev>"]
+description = ""
+name = "py"
+trigger = { type = "http", base = "/" }
+version = "0.1.0"
+
+[[component]]
+id = "py"
+source = "app.wasm"
+allowed_http_hosts = ["https://google.com"]
+
+[component.trigger]
+route = "/..."
+
+[component.build]
+command = "spin py2wasm app -o app.wasm"
