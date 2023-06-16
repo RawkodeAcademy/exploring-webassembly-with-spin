@@ -1,0 +1,27 @@
+spin_manifest_version = "1"
+authors = ["David Flanagan <david@rawkode.dev>"]
+description = ""
+name = "backend"
+trigger = { type = "http", base = "/" }
+version = "0.1.0"
+
+[[component]]
+id = "backend"
+source = "target/spin-http-js.wasm"
+exclude_files = ["**/node_modules"]
+key_value_stores = ["default"]
+allowed_http_hosts = ["bsky.social"]
+
+[component.trigger]
+route = "/..."
+
+[component.build]
+command = "npm run build"
+
+[[component]]
+source = { url = "https://github.com/radu-matei/spin-kv-explorer/releases/download/v0.8.0/spin-kv-explorer.wasm", digest = "sha256:e1667e756004000913d869b72db600fb2675f4358c6f0cc2581dfa869e56073c" }
+id = "kv-explorer"
+key_value_stores = ["default"]
+
+[component.trigger]
+route = "/internal/kv-explorer/..."
