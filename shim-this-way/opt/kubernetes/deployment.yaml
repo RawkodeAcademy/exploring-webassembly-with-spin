@@ -17,5 +17,3 @@ spec:
         - name: run-wasm
           image: ghcr.io/rawkode/shim-this-way:latest
           imagePullPolicy: Always
-          command:
-            - "/"

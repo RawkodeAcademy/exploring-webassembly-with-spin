@@ -1,0 +1,37 @@
+spin_manifest_version = "1"
+authors = ["David Flanagan <david@rawkode.dev>"]
+description = ""
+name = "real-app-openai-language-guesser"
+trigger = { type = "http", base = "/" }
+version = "0.1.0"
+
+[[component]]
+id = "real-app-openai-language-guesser"
+source = "target/spin-http-js.wasm"
+exclude_files = ["**/node_modules"]
+allowed_http_hosts = ["https://api.openai.com"]
+
+[component.config]
+openai_token = "{{ openai_token }}"
+
+[component.trigger]
+route = "/api"
+
+[component.build]
+command = "npm run build"
+
+[variables]
+openai_token = { required = true }
+
+[[component]]
+source = { url = "https://github.com/fermyon/spin-fileserver/releases/download/v0.0.1/spin_static_fs.wasm", digest = "sha256:650376c33a0756b1a52cad7ca670f1126391b79050df0321407da9c741d32375" }
+id = "frontend"
+files = [{ source = "frontendv2/dist", destination = "/" }]
+environment = { FALLBACK_PATH = "index.html" }
+
+[component.build]
+workdir = "frontendv2"
+command = "pnpm run build"
+
+[component.trigger]
+route = "/..."

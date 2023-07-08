@@ -65,7 +65,6 @@ export class MyElement extends LitElement {
   }
 
   private renderEmbed() {
-    console.log("maybe rendering embed");
     if (this.fetched) {
       console.log("rendering embed");
       return html`
@@ -77,6 +76,8 @@ export class MyElement extends LitElement {
       </p>
       `
     }
+
+    return html``;
   }
 
   async embedLink() {
